@@ -1,15 +1,3 @@
-Got it — here’s a **`README.md`** you can drop into your repo or keep for personal use.
-It contains **Windows Terminal / PowerShell commands** to:
-
-* Debloat Windows (remove preinstalled apps)
-* Enable auto-hide taskbar
-* Center taskbar icons
-* Create `C:\Dev`
-* Install Firefox, Discord, and VS Code
-
----
-
-````markdown
 # Windows Setup & Debloat Script
 
 This guide contains **PowerShell commands** to set up a clean, minimal Windows environment with essential dev tools installed.
@@ -105,9 +93,7 @@ winget install --id Google.Chrome -e
 Stop-Process -f -ProcessName explorer
 ```
 
----
 
-✅ After running these commands, Windows will be **debloated, clean, and ready for dev work**.
 
 
 
