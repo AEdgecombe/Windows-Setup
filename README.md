@@ -9,24 +9,53 @@ This guide contains **PowerShell commands** to set up a clean, minimal Windows e
 ## 1. Remove Preinstalled Bloatware
 
 ```powershell
-# Uninstall common bloatware apps
-Get-AppxPackage *3dbuilder* | Remove-AppxPackage
-Get-AppxPackage *xboxapp* | Remove-AppxPackage
-Get-AppxPackage *officehub* | Remove-AppxPackage
-Get-AppxPackage *skypeapp* | Remove-AppxPackage
-Get-AppxPackage *getstarted* | Remove-AppxPackage
-Get-AppxPackage *zunemusic* | Remove-AppxPackage
-Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage
-Get-AppxPackage *solitairecollection* | Remove-AppxPackage
-Get-AppxPackage *bingweather* | Remove-AppxPackage
-Get-AppxPackage *bingsports* | Remove-AppxPackage
-Get-AppxPackage *bingnews* | Remove-AppxPackage
-Get-AppxPackage *bingfinance* | Remove-AppxPackage
-Get-AppxPackage *people* | Remove-AppxPackage
-Get-AppxPackage *maps* | Remove-AppxPackage
-Get-AppxPackage *soundrecorder* | Remove-AppxPackage
-Get-AppxPackage *3dviewer* | Remove-AppxPackage
-Get-AppxPackage *windowsfeedbackhub* | Remove-AppxPackage
+$apps = @(
+    "*3dbuilder*",
+    "*xboxapp*",
+    "*officehub*",
+    "*skypeapp*",
+    "*getstarted*",
+    "*zunemusic*",
+    "*windowscommunicationsapps*",
+    "*solitairecollection*",
+    "*bingweather*",
+    "*bingsports*",
+    "*bingnews*",
+    "*bingfinance*",
+    "*people*",
+    "*maps*",
+    "*soundrecorder*",
+    "*3dviewer*",
+    "*windowsfeedbackhub*",
+    "*mixedreality*",
+    "*YourPhone*",
+    "*clipchamp*",
+    "*candycrush*",
+    "*Spotify*",
+    "*devhome*",
+    "*Teams*",
+    "*Cortana*"
+)
+
+foreach ($app in $apps) {
+    Get-AppxPackage -AllUsers $app | Remove-AppxPackage -ErrorAction SilentlyContinue
+    Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $app | Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue
+}
+
+# --- Disable all startup apps for current user ---
+Get-CimInstance Win32_StartupCommand | ForEach-Object {
+    $name = $_.Name
+    Write-Host "Disabling startup item: $name"
+    try {
+        # Remove from registry
+        Remove-ItemProperty -Path $_.Location -Name $name -ErrorAction SilentlyContinue
+    } catch {}
+}
+
+# --- Optional: Disable consumer experience & ads ---
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableConsumerFeatures" -Value 1 -Type DWord -Force
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338388Enabled" -Value 0 -Type DWord -Force
+
 ````
 
 ---
