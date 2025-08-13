@@ -1,3 +1,5 @@
+# Removing bloat apps and disabling features in Windows 11
+
 $apps = @(
     "*3dbuilder*",
     "*xboxapp*",
