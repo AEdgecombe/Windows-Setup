@@ -62,16 +62,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentD
 
 ## 2. Taskbar Settings (Optional)
 
-### Auto-hide Taskbar
-
-```powershell
-# Enable auto-hide for taskbar
-Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value (
-    ($s = (Get-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings) -replace ([char]8), [char]9
-)
-Stop-Process -f -ProcessName explorer
-```
-
 ### Centre Taskbar Icons (Windows 11) (Optional)
 
 ```powershell
