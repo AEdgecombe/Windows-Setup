@@ -31,7 +31,7 @@ Get-AppxPackage *windowsfeedbackhub* | Remove-AppxPackage
 
 ---
 
-## 2. Taskbar Settings
+## 2. Taskbar Settings (Optional)
 
 ### Auto-hide Taskbar
 
@@ -43,7 +43,7 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 Stop-Process -f -ProcessName explorer
 ```
 
-### Centre Taskbar Icons (Windows 11)
+### Centre Taskbar Icons (Windows 11) (Optional)
 
 ```powershell
 # Set taskbar alignment to center
@@ -53,7 +53,7 @@ Stop-Process -f -ProcessName explorer
 
 ---
 
-## 3. Create Dev Directory
+## 3. Create Dev Directory (Optional)
 
 ```powershell
 # Make a development folder
@@ -62,7 +62,7 @@ New-Item -ItemType Directory -Path "C:\Dev" -Force
 
 ---
 
-## 4. Install Essential Apps (Firefox, Discord, VS Code)
+## 4. Install Essential Apps (Firefox, Discord, VS Code) (Optional)
 
 We’ll use **winget** (Windows Package Manager).
 
