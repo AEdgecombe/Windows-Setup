@@ -33,7 +33,7 @@ foreach ($app in $apps) {
     Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $app | Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue
 }
 
-# --- Disable all startup apps for current user ---
+# Disable all startup apps for current user
 Get-CimInstance Win32_StartupCommand | ForEach-Object {
     $name = $_.Name
     Write-Host "Disabling startup item: $name"
@@ -43,7 +43,7 @@ Get-CimInstance Win32_StartupCommand | ForEach-Object {
     } catch {}
 }
 
-# --- Optional: Disable consumer experience & ads ---
+# Optional: Disable consumer experience & ads 
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableConsumerFeatures" -Value 1 -Type DWord -Force
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338388Enabled" -Value 0 -Type DWord -Force
 
@@ -62,9 +62,6 @@ New-Item -ItemType Directory -Path "C:\Dev" -Force
 
 # Install Firefox
 winget install --id Mozilla.Firefox -e
-
-# Install Discord
-winget install --id Discord.Discord -e
 
 # Install Visual Studio Code
 winget install --id Microsoft.VisualStudioCode -e
