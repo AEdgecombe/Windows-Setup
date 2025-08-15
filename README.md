@@ -1,6 +1,6 @@
 # Windows Setup & Debloat Script
 
-This guide contains **PowerShell commands** to set up a clean, minimal Windows environment with essential dev tools installed. The debloat.ps1 file contains the entire script in one go for everything below. Configure as required.
+This guide contains **PowerShell commands** to set up a clean, minimal Windows environment with essential dev tools installed. The debloat.ps1 file contains the entire script in one go for everything below. Configure as required. WIP
 
 > ⚠️ **Run PowerShell as Administrator** before executing these commands.
 
